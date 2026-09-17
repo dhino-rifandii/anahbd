@@ -178,6 +178,7 @@ const Effects = (() => {
      MAGIC FIREWORKS (Rockets, Layered Blooms & Hearts)
      ============================================ */
   const FireworkAudio = (() => {
+    const VOLUME = 1.4;
     let context, master, noise, enabled = true;
     const voices = new Set();
 
@@ -189,8 +190,16 @@ const Effects = (() => {
         if (!context) {
           context = new Audio();
           master = context.createGain();
-          master.gain.value = 0.8;
-          master.connect(context.destination);
+          master.gain.value = VOLUME;
+          // Keep overlapping bursts controlled while increasing their volume.
+          const compressor = context.createDynamicsCompressor();
+          compressor.threshold.value = -6;
+          compressor.knee.value = 6;
+          compressor.ratio.value = 12;
+          compressor.attack.value = 0.003;
+          compressor.release.value = 0.2;
+          master.connect(compressor);
+          compressor.connect(context.destination);
           noise = context.createBuffer(1, context.sampleRate * 2, context.sampleRate);
           const data = noise.getChannelData(0);
           for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
@@ -222,8 +231,8 @@ const Effects = (() => {
       if (!launch) {
         // A soft low boom beneath the noise tail.
         const bass = context.createOscillator(), envelope = context.createGain();
-        bass.frequency.setValueAtTime(95, now);
-        bass.frequency.exponentialRampToValueAtTime(35, now + 0.35);
+        bass.frequency.setValueAtTime(150, now);
+        bass.frequency.exponentialRampToValueAtTime(60, now + 0.35);
         envelope.gain.setValueAtTime(0.001, now);
         envelope.gain.linearRampToValueAtTime(0.7, now + 0.01);
         envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
@@ -243,7 +252,7 @@ const Effects = (() => {
       if (!btn) return;
       btn.addEventListener('click', () => {
         enabled = !enabled;
-        if (master) master.gain.value = enabled ? 0.8 : 0;
+        if (master) master.gain.value = enabled ? VOLUME : 0;
         if (enabled) unlock(); else stop();
         btn.setAttribute('aria-pressed', String(enabled));
         btn.textContent = enabled ? '🔊' : '🔇';

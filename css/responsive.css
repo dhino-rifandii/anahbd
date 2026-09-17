@@ -132,8 +132,23 @@ body {
   }
 
   .music-player {
-    top: 0.75rem;
+    top: 3.2rem;
     right: 0.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .music-player {
+    max-width: calc(100vw - 1rem);
+  }
+
+  .music-info {
+    min-width: 0;
+  }
+
+  .music-vinyl-wrap,
+  .music-controls {
+    flex-shrink: 0;
   }
 }
 
