@@ -189,7 +189,7 @@ const Effects = (() => {
         if (!context) {
           context = new Audio();
           master = context.createGain();
-          master.gain.value = 0.3;
+          master.gain.value = 0.8;
           master.connect(context.destination);
           noise = context.createBuffer(1, context.sampleRate * 2, context.sampleRate);
           const data = noise.getChannelData(0);
@@ -213,7 +213,7 @@ const Effects = (() => {
       filter.frequency.exponentialRampToValueAtTime(launch ? 2200 : 100, now + length);
       filter.Q.value = launch ? 2 : 0.7;
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(launch ? 0.18 : 0.6, now + (launch ? 0.12 : 0.015));
+      gain.gain.linearRampToValueAtTime(launch ? 0.5 : 1.0, now + (launch ? 0.12 : 0.015));
       gain.gain.exponentialRampToValueAtTime(0.001, now + length);
       source.connect(filter); filter.connect(gain); gain.connect(master);
       voices.add(source);
@@ -225,7 +225,7 @@ const Effects = (() => {
         bass.frequency.setValueAtTime(95, now);
         bass.frequency.exponentialRampToValueAtTime(35, now + 0.35);
         envelope.gain.setValueAtTime(0.001, now);
-        envelope.gain.linearRampToValueAtTime(0.35, now + 0.01);
+        envelope.gain.linearRampToValueAtTime(0.7, now + 0.01);
         envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
         bass.connect(envelope); envelope.connect(master); voices.add(bass);
         bass.onended = () => { voices.delete(bass); bass.disconnect(); envelope.disconnect(); };
@@ -243,7 +243,7 @@ const Effects = (() => {
       if (!btn) return;
       btn.addEventListener('click', () => {
         enabled = !enabled;
-        if (master) master.gain.value = enabled ? 0.3 : 0;
+        if (master) master.gain.value = enabled ? 0.8 : 0;
         if (enabled) unlock(); else stop();
         btn.setAttribute('aria-pressed', String(enabled));
         btn.textContent = enabled ? '🔊' : '🔇';

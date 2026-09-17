@@ -46,9 +46,27 @@ body {
   display: none;
 }
 
-/* Music player compact on mobile */
-.music-player {
+/* Theme switcher compact on mobile */
+.theme-switcher {
   top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.25rem 0.45rem;
+  gap: 0.25rem;
+}
+
+.theme-switcher__label {
+  display: none;
+}
+
+.theme-btn {
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+}
+
+/* Music player compact on mobile — positioned below theme switcher */
+.music-player {
+  top: 3.2rem;
   right: 0.5rem;
   padding: 0.4rem 0.7rem;
   border-radius: 14px;
