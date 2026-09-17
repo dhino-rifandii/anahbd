@@ -89,6 +89,31 @@ body {
   max-height: calc(100dvh - 2rem);
 }
 
+/* Center gallery video within the visible mobile viewport. */
+@media (max-width: 767px) {
+  .lightbox:has(#lightbox-video:not([hidden])) {
+    height: 100dvh;
+  }
+
+  .lightbox__img-wrap:has(#lightbox-video:not([hidden])) {
+    width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 6rem);
+  }
+
+  .lightbox__img-wrap:has(#lightbox-video:not([hidden])) > [hidden] {
+    display: none;
+  }
+
+  #lightbox-video:not([hidden]) {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-height: calc(100dvh - 6rem);
+    margin: auto;
+    object-fit: contain;
+  }
+}
+
 /* ---------- Small Mobile: 360px+ ---------- */
 @media (min-width: 360px) {
   .polaroid {
@@ -359,4 +384,3 @@ body {
     padding: 0.6rem 1.2rem;
   }
 }
-
