@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0E6" />
+      <stop offset="50%" stop-color="#FFCAB8" />
+      <stop offset="100%" stop-color="#FFA085" />
+    </linearGradient>
+    <radialGradient id="peachGlow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FF6E4A" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bgGrad3)" />
+  <circle cx="300" cy="300" r="230" fill="url(#peachGlow)" />
+  
+  <g transform="translate(300, 420)">
+    <circle cx="0" cy="-60" r="80" fill="rgba(255,255,255,0.4)" />
+    <text x="0" y="-80" font-family="'Great Vibes', cursive" font-size="48" fill="#D84315" text-anchor="middle">Keep Glowing 🌷</text>
+    <text x="0" y="-30" font-family="'Playfair Display', serif" font-size="22" fill="#BF360C" text-anchor="middle">Ana's Bright Path</text>
+    <text x="0" y="20" font-family="'Poppins', sans-serif" font-size="16" fill="#870000" text-anchor="middle">Every Step is a Blossom</text>
+  </g>
+
+  <text x="110" y="190" font-size="34" fill="#FFF">🌅</text>
+  <text x="480" y="180" font-size="30" fill="#FFF">✨</text>
+  <text x="130" y="650" font-size="30" fill="#FFF">🌷</text>
+  <text x="450" y="630" font-size="32" fill="#FFF">💖</text>
+  
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="8,6" rx="16" opacity="0.6" />
+</svg>

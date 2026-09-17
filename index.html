@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="rose">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Happy Birthday, Ana 🌷 — Blooming Romance</title>
+  <meta name="description" content="Special 3D Birthday surprise for Septiana Tri Handayani — Blooming Birthday for Ana with interactive 3D Cake, Flower & Romantic Music">
+  <meta name="theme-color" content="#FFC2D1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===================== OPENING SCREEN ===================== -->
+  <div id="opening" class="opening" role="dialog" aria-label="Birthday surprise opening">
+    <canvas id="opening-particles" aria-hidden="true"></canvas>
+    <div class="opening__content">
+      <p class="opening__subtitle">Ada kado spesial untukmu hari ini...</p>
+      <h1 class="opening__name">Ana <span class="opening__heart">♡</span></h1>
+      <p class="opening__tagline">Septiana Tri Handayani ✨</p>
+      <button id="open-btn" class="opening__btn" aria-label="Buka kejutan ulang tahun">
+        Buka Kejutannya 🌷✨
+      </button>
+    </div>
+    <!-- Decorative blobs -->
+    <div class="opening__blob opening__blob--1" aria-hidden="true"></div>
+    <div class="opening__blob opening__blob--2" aria-hidden="true"></div>
+    <div class="opening__blob opening__blob--3" aria-hidden="true"></div>
+  </div>
+
+  <!-- ===================== BACKGROUND CANVASES ===================== -->
+  <canvas id="petals-bg" class="petals-bg" aria-hidden="true"></canvas>
+  <canvas id="sparkler-canvas" class="sparkler-canvas" aria-hidden="true"></canvas>
+  <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main id="main-content" class="main-content">
+
+    <!-- ============= HERO SECTION ============= -->
+    <section id="hero" class="hero section">
+      <div class="hero__bg-blobs" aria-hidden="true">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="hero__content">
+        <div class="hero__badge reveal-up" data-delay="0">
+          <span>🌸 18 September • Special Day</span>
+        </div>
+        <p class="hero__pre reveal-up" data-delay="150">Happy Birthday</p>
+        <h1 class="hero__name reveal-up" data-delay="300">Ana</h1>
+        <p class="hero__fullname reveal-up" data-delay="450">Septiana Tri Handayani</p>
+        <div class="hero__divider reveal-up" data-delay="550" aria-hidden="true">
+          <span>✿</span>
+        </div>
+        <p class="hero__quote reveal-up" data-delay="650">Today is your day, and I hope it blooms as beautifully as you do.</p>
+        <p class="hero__quote hero__quote--id reveal-up" data-delay="800">Semoga hari ini menjadi awal dari banyak cerita indah yang akan datang.</p>
+        
+        <!-- Interactive Sparkler Toggle -->
+        <div class="hero__actions reveal-up" data-delay="950">
+          <button id="sparkler-toggle-btn" class="sparkler-tool-btn" aria-label="Nyalakan kembang api magic" aria-pressed="false" aria-describedby="sparkler-hint">
+            ✨ Nyalakan Kembang Api Magic 🪄
+          </button>
+          <p id="sparkler-hint" class="sparkler-hint" aria-live="polite">Sedikit cahaya untuk hari spesialmu</p>
+          <button id="fireworks-sound-btn" class="fireworks-sound-btn" aria-pressed="true" aria-label="Matikan suara kembang api">🔊</button>
+        </div>
+
+        <div class="hero__scroll reveal-up" data-delay="1100">
+          <span>Scroll ke bawah untuk melihat kejutannya</span>
+          <span class="hero__arrow" aria-hidden="true">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= 3D BIRTHDAY CAKE & CANDLE SECTION ============= -->
+    <section id="cake-section" class="cake-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up" data-delay="0">Make a wish, Ana...</p>
+          <h2 class="section-title reveal-up" data-delay="150">Interactive 3D Birthday Cake 🎂</h2>
+          <p class="section-subtitle reveal-up" data-delay="250">Putar kue 3D dengan jarimu, lalu tiup lilinnya untuk menyampaikan permohonanmu ✨</p>
+        </div>
+
+        <div id="cake-container" class="cake-container reveal-up" data-delay="350">
+          <canvas id="cake-canvas" aria-label="Animasi kue ulang tahun 3D dengan lilin menyala"></canvas>
+        </div>
+
+        <!-- Cake Controls -->
+        <div class="cake-controls reveal-up" data-delay="450">
+          <button id="cake-blow-btn" class="cake-btn cake-btn--primary" aria-label="Tiup lilin">
+            💨 Tiup Lilinnya Sekarang 🎂
+          </button>
+          <button id="cake-mic-btn" class="cake-btn cake-btn--sub" aria-label="Aktifkan tiupan mikrofon">
+            🎙️ Aktifkan Deteksi Tiupan Mic
+          </button>
+          <button id="cake-relight-btn" class="cake-btn cake-btn--sub" style="display:none;" aria-label="Nyalakan lilin lagi">
+            🔥 Nyalakan Lilin Lagi ✨
+          </button>
+        </div>
+
+        <p id="cake-status" class="cake-status reveal-up" data-delay="550">
+          Tiup lilinnya dengan menekan tombol atau berbicara/meniup mikrofon! 🎂
+        </p>
+
+        <!-- Secret Wish Card Revealed After Candle Extinguished -->
+        <div id="cake-wish-reveal" class="cake-wish-reveal glass-card">
+          <div class="cake-wish-badge">💖 Doa Spesial untuk Ana 💖</div>
+          <h3 class="cake-wish-title">Semoga Semua Impianmu Terwujud ✨</h3>
+          <p class="cake-wish-desc">
+            "Semoga setiap langkah yang Ana ambil selalu diterangi kebaikan, kebahagiaan yang melimpah, hati yang selalu tenang, dan senyum manis yang tak pernah pudar. Selamat ulang tahun, Ana! 🌷"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= 3D FLOWER GARDEN SECTION ============= -->
+    <section id="flower-section" class="flower-section section">
+      <div class="flower-section__text">
+        <p class="reveal-up script-font" data-delay="0">A flower blooms for you...</p>
+        <h2 class="section-title reveal-up" data-delay="100">Lush 3D Blooming Rose 🌸</h2>
+        <p class="flower-subtitle reveal-up" data-delay="200">Sentuh atau geser kelopak bunga untuk melihat kupu-kupu 3D & keindahannya dari berbagai sudut ✨</p>
+      </div>
+
+      <div id="flower-container" class="flower-container">
+        <canvas id="flower-canvas" aria-label="Animasi bunga 3D yang mekar dengan kupu-kupu"></canvas>
+        <!-- CSS Fallback -->
+        <div id="flower-fallback" class="flower-fallback" style="display:none;" aria-label="Bunga dekoratif">
+          <div class="css-flower">
+            <div class="css-flower__petal css-flower__petal--1"></div>
+            <div class="css-flower__petal css-flower__petal--2"></div>
+            <div class="css-flower__petal css-flower__petal--3"></div>
+            <div class="css-flower__petal css-flower__petal--4"></div>
+            <div class="css-flower__petal css-flower__petal--5"></div>
+            <div class="css-flower__petal css-flower__petal--6"></div>
+            <div class="css-flower__petal css-flower__petal--7"></div>
+            <div class="css-flower__petal css-flower__petal--8"></div>
+            <div class="css-flower__center"></div>
+            <div class="css-flower__stem"></div>
+            <div class="css-flower__leaf css-flower__leaf--left"></div>
+            <div class="css-flower__leaf css-flower__leaf--right"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Flower Toolbar -->
+      <div class="flower-toolbar reveal-up" data-delay="300">
+        <button id="flower-replay-btn" class="flower-tool-btn" aria-label="Mekarkan bunga ulang">
+          <span class="flower-tool-icon">🔄</span> Mekarkan Bunga Lagi 🌸
+        </button>
+        <div class="flower-color-picker" role="radiogroup" aria-label="Pilihan nuansa bunga">
+          <button class="flower-color-btn is-active" data-color="rose" style="background:#FF8FAB;" title="Rose Blush"></button>
+          <button class="flower-color-btn" data-color="lavender" style="background:#B983FF;" title="Lavender Lilac"></button>
+          <button class="flower-color-btn" data-color="peach" style="background:#FFA085;" title="Golden Peach"></button>
+          <button class="flower-color-btn" data-color="sakura" style="background:#FFAEC0;" title="Sakura Blossom"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= INTERACTIVE WAX SEAL LOVE LETTER ============= -->
+    <section id="letter-section" class="letter-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up">Special Letter...</p>
+          <h2 class="section-title reveal-up" data-delay="100">Surat dari Hati untuk Ana 🤍</h2>
+          <p class="section-subtitle reveal-up" data-delay="200">Tekan segel lilin (Wax Seal) di bawah ini untuk membuka dan membaca suratnya 💌</p>
+        </div>
+
+        <div id="romantic-envelope" class="romantic-envelope reveal-up" data-delay="300">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          
+          <!-- Wax Seal Button -->
+          <button id="wax-seal-btn" class="wax-seal-btn" aria-label="Buka Segel Lilin Surat">
+            <span class="wax-seal-stamp">Ana ♡</span>
+          </button>
+
+          <!-- Letter Card -->
+          <div id="letter-content" class="letter-card glass-card">
+            <div class="letter-card__content">
+              <p class="letter-para" data-delay="100">Selamat ulang tahun, Ana.</p>
+              <p class="letter-para" data-delay="200">Hari ini adalah hari untuk merayakan seseorang yang spesial, seseorang yang kehadirannya bisa membuat hari-hari sederhana terasa sedikit lebih indah.</p>
+              <p class="letter-para" data-delay="300">Semoga di usia yang baru ini, semua hal baik semakin dekat sama kamu. Semoga hal-hal yang selama ini kamu perjuangkan satu per satu menemukan jalannya, doa-doamu mendapatkan jawaban terbaik, dan langkahmu selalu dipertemukan dengan banyak alasan untuk tersenyum.</p>
+              <p class="letter-para" data-delay="400">Aku mungkin nggak tahu seperti apa semua cerita yang akan kamu lewati setelah hari ini, tapi aku berharap kamu selalu dikelilingi orang-orang yang tulus, diberikan kesehatan, ketenangan, dan keberanian untuk mengejar semua yang kamu inginkan.</p>
+              <p class="letter-para" data-delay="500">Tetap jadi Ana yang aku kenal.</p>
+              <p class="letter-para" data-delay="600">Tetap tersenyum, tetap kuat, dan jangan pernah merasa kalau mimpimu terlalu tinggi untuk dikejar.</p>
+              <p class="letter-para letter-para--highlight" data-delay="700">Happy Birthday, Ana. 🌷</p>
+              <p class="letter-para" data-delay="800">Semoga tahun ini menjadi salah satu chapter terbaik dalam hidup kamu.</p>
+              <p class="letter-para letter-para--closing" data-delay="900">Dan semoga akan ada banyak bunga yang mekar di perjalananmu berikutnya. 🤍</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= 3D SURPRISE GIFT BOX ============= -->
+    <section id="gift-section" class="gift-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up">Surprise for you...</p>
+          <h2 class="section-title reveal-up" data-delay="100">Kotak Kado Kejutan 🎁</h2>
+          <p class="section-subtitle reveal-up" data-delay="200">Sentuh kotak kado untuk melepas pita dan membuka kejutannya!</p>
+        </div>
+
+        <div class="gift-wrap-center reveal-up" data-delay="300">
+          <div id="gift-box-wrap" class="gift-box-wrap">
+            <div class="gift-box">
+              <div class="gift-lid">
+                <div class="gift-bow">🎀</div>
+              </div>
+              <div class="gift-body">
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-ribbon-h"></div>
+              </div>
+            </div>
+          </div>
+
+          <button id="gift-unwrap-btn" class="gift-unwrap-btn" aria-label="Buka Kado">
+            🎁 Buka Kotak Kado Ini ✨
+          </button>
+        </div>
+
+        <!-- Hidden contents that burst out -->
+        <div id="gift-reveal-content" class="gift-reveal-content">
+          <div class="gift-reveal-card glass-card">
+            <span class="gift-reveal-emoji">✨ 🎉 🌸 💖</span>
+            <h3>Kejutan Terindah untuk Septiana Tri Handayani</h3>
+            <p>
+              "Kamu adalah kado terindah bagi orang-orang di sekitarmu. Teruslah menjadi cahaya yang menghangatkan dan menebarkan senyuman!"
+            </p>
+            <div class="gift-tags">
+              <span class="gift-tag">#HappyBirthdayAna</span>
+              <span class="gift-tag">#Special18Sept</span>
+              <span class="gift-tag">#StayPrecious</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= INTERACTIVE WISH BALLOONS ============= -->
+    <section id="balloons-section" class="balloons-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up">Reasons why you are amazing...</p>
+          <h2 class="section-title reveal-up" data-delay="100">Balon Harapan & Pesan Rahasia 🎈</h2>
+          <p class="section-subtitle reveal-up" data-delay="200">Pecahkan balon-balon melayang di bawah ini untuk melihat pesan-pesan manis khusus untukmu!</p>
+        </div>
+
+        <div id="balloons-container" class="balloons-grid reveal-up" data-delay="300">
+          <div class="wish-balloon wish-balloon--1" data-idx="0">
+            <div class="balloon-body">🎈 <span>1</span></div>
+            <div class="balloon-string"></div>
+          </div>
+          <div class="wish-balloon wish-balloon--2" data-idx="1">
+            <div class="balloon-body">🎈 <span>2</span></div>
+            <div class="balloon-string"></div>
+          </div>
+          <div class="wish-balloon wish-balloon--3" data-idx="2">
+            <div class="balloon-body">🎈 <span>3</span></div>
+            <div class="balloon-string"></div>
+          </div>
+          <div class="wish-balloon wish-balloon--4" data-idx="3">
+            <div class="balloon-body">🎈 <span>4</span></div>
+            <div class="balloon-string"></div>
+          </div>
+          <div class="wish-balloon wish-balloon--5" data-idx="4">
+            <div class="balloon-body">🎈 <span>5</span></div>
+            <div class="balloon-string"></div>
+          </div>
+          <div class="wish-balloon wish-balloon--6" data-idx="5">
+            <div class="balloon-body">🎈 <span>6</span></div>
+            <div class="balloon-string"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= GALLERY / MEMORIES ============= -->
+    <section id="gallery-section" class="gallery-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up">Moments & Memories 📸</p>
+          <h2 class="section-title reveal-up" data-delay="100">Kenangan Indah Bersama Ana</h2>
+          <p class="section-subtitle reveal-up" data-delay="200">Setiap senyuman menyimpan cerita berharga yang tak terlupakan...</p>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- Card 1 -->
+          <div class="polaroid-card glass-card reveal-up" data-delay="200" data-idx="0">
+            <div class="polaroid-card__tape"></div>
+            <div class="polaroid-card__img-wrap">
+              <img src="assets/images/foto 2.jpeg" alt="Foto Ana 1" class="polaroid-card__img" loading="lazy">
+            </div>
+            <div class="polaroid-card__caption">
+              <p class="polaroid-card__quote">Senyum yang selalu membawa ketenangan 🌸</p>
+              <p class="polaroid-card__sub">September 2026</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="polaroid-card glass-card reveal-up" data-delay="350" data-idx="1">
+            <div class="polaroid-card__tape"></div>
+            <div class="polaroid-card__img-wrap">
+              <video src="assets/images/video.mp4" poster="assets/images/WhatsApp Image 2026-09-17 at 23.40.13.jpeg" class="polaroid-card__img" preload="none" muted playsinline aria-label="Video kenangan bersama Ana"></video>
+              <span class="polaroid-card__play" aria-hidden="true">▶ <span>Putar video</span></span>
+            </div>
+            <div class="polaroid-card__caption">
+              <p class="polaroid-card__quote">Hari-hari terasa lebih cerah bersamamu ✨</p>
+              <p class="polaroid-card__sub">Beautiful Days</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="polaroid-card glass-card reveal-up" data-delay="500" data-idx="2">
+            <div class="polaroid-card__tape"></div>
+            <div class="polaroid-card__img-wrap">
+              <img src="assets/images/WhatsApp Image 2026-09-17 at 23.40.14.jpeg" alt="Foto Ana 3" class="polaroid-card__img" loading="lazy">
+            </div>
+            <div class="polaroid-card__caption">
+              <p class="polaroid-card__quote">Teruslah bersinar dengan caramu sendiri 🌷</p>
+              <p class="polaroid-card__sub">Keep Glowing</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="polaroid-card glass-card reveal-up" data-delay="650" data-idx="3">
+            <div class="polaroid-card__tape"></div>
+            <div class="polaroid-card__img-wrap">
+              <img src="assets/images/IMG_3164.jpg" alt="Foto Ana 4" class="polaroid-card__img" loading="lazy">
+            </div>
+            <div class="polaroid-card__caption">
+              <p class="polaroid-card__quote">Semoga bahagia selalu menyertaimu 🤍</p>
+              <p class="polaroid-card__sub">Always & Forever</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= WISH CARDS ============= -->
+    <section id="wishes-section" class="wishes-section section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="script-font reveal-up">Best Wishes for You ✨</p>
+          <h2 class="section-title reveal-up" data-delay="100">Doa Terbaik untuk Usia Barumu</h2>
+        </div>
+        <div class="wishes-grid">
+          <div class="wish-card glass-card reveal-up" data-delay="200">
+            <span class="wish-card__icon" aria-hidden="true">🌱</span>
+            <h3 class="wish-card__title">Growth</h3>
+            <p class="wish-card__text">Semoga terus bertumbuh menjadi versi terbaik dari dirimu sendiri.</p>
+          </div>
+          <div class="wish-card glass-card reveal-up" data-delay="300">
+            <span class="wish-card__icon" aria-hidden="true">☀️</span>
+            <h3 class="wish-card__title">Health</h3>
+            <p class="wish-card__text">Semoga selalu diberikan kesehatan, semangat baru, dan ketenangan.</p>
+          </div>
+          <div class="wish-card glass-card reveal-up" data-delay="400">
+            <span class="wish-card__icon" aria-hidden="true">🌙</span>
+            <h3 class="wish-card__title">Peace</h3>
+            <p class="wish-card__text">Semoga hati kamu selalu punya tempat untuk pulang dan beristirahat.</p>
+          </div>
+          <div class="wish-card glass-card reveal-up" data-delay="500">
+            <span class="wish-card__icon" aria-hidden="true">🌸</span>
+            <h3 class="wish-card__title">Love</h3>
+            <p class="wish-card__text">Semoga selalu dikelilingi orang-orang yang benar-benar tulus menyayangimu.</p>
+          </div>
+          <div class="wish-card glass-card reveal-up" data-delay="600">
+            <span class="wish-card__icon" aria-hidden="true">⭐</span>
+            <h3 class="wish-card__title">Success</h3>
+            <p class="wish-card__text">Semoga setiap usaha yang kamu lakukan membawa kamu semakin dekat dengan impianmu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FINAL SECTION ============= -->
+    <section id="final-section" class="final-section section">
+      <div class="final-section__content">
+        <p class="final-text final-text--1 reveal-up">And just like these flowers...</p>
+        <p class="final-text final-text--2 reveal-up" data-delay="300">May you continue to bloom beautifully.</p>
+        <div class="final-divider reveal-up" data-delay="500" aria-hidden="true">✿</div>
+        <h2 class="final-name reveal-up" data-delay="600">Happy Birthday, Ana.</h2>
+        <p class="final-fullname reveal-up" data-delay="800">Septiana Tri Handayani</p>
+        <p class="final-date reveal-up" data-delay="900">18 September</p>
+        <footer class="final-footer reveal-up" data-delay="1100" aria-label="Pesan penutup dari Rifandii">
+          <div class="final-footer__divider" aria-hidden="true"><span>♡</span></div>
+          <p class="final-footer__from">From your boyfriend,</p>
+          <p class="final-footer__signature">Rifandii</p>
+          <p>Made with <span class="final-heart" aria-label="love">♡</span> for Ana</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FLOATING INTERACTIVE ELEMENTS ===================== -->
+
+  <!-- Floating Theme Switcher Pill -->
+  <div id="theme-switcher" class="theme-switcher" role="toolbar" aria-label="Pilihan Nuansa Warna">
+    <span class="theme-switcher__label">Nuansa:</span>
+    <button class="theme-btn is-active" data-theme="rose" title="Blush Rose 🌸" aria-label="Tema Blush Rose">🌸</button>
+    <button class="theme-btn" data-theme="lavender" title="Lavender Dream 💜" aria-label="Tema Lavender Dream">💜</button>
+    <button class="theme-btn" data-theme="sunset" title="Sunset Romance 🌅" aria-label="Tema Sunset Romance">🌅</button>
+    <button class="theme-btn" data-theme="sakura" title="Sakura Blossom 🍓" aria-label="Tema Sakura Blossom">🍓</button>
+  </div>
+
+  <!-- Modern Romantic Music Player Widget with Lyrics Ticker -->
+  <div id="music-player" class="music-player">
+    <div class="music-player__main">
+      <!-- Spinning Vinyl Record -->
+      <div class="music-vinyl-wrap" id="music-drawer-toggle" role="button" aria-label="Buka playlist lagu" title="Klik untuk membuka playlist lagu">
+        <div class="music-vinyl" id="music-vinyl">
+          <div class="music-vinyl__label">♫</div>
+        </div>
+      </div>
+
+      <!-- Track Meta & Animated Visualizer -->
+      <div class="music-info">
+        <div class="music-title-wrap">
+          <span class="music-title" id="music-title">Until I Found You</span>
+        </div>
+        <div class="music-subinfo">
+          <span class="music-artist" id="music-artist">Stephen Sanchez</span>
+          <!-- Equalizer bars -->
+          <div class="music-eq" id="music-eq" aria-hidden="true">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </div>
+        </div>
+        <!-- Romantic Lyrics Subtitle Ticker -->
+        <div class="music-lyrics-ticker" id="music-lyrics-ticker">
+          ❝ I would never fall in love until I found her... ❞
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="music-controls">
+        <button id="music-prev-btn" class="music-btn music-btn--sub" aria-label="Lagu Sebelumnya" title="Sebelumnya">⏮</button>
+        <button id="music-play-btn" class="music-btn music-btn--primary" aria-label="Putar / Pause" title="Play / Pause">
+          <span class="music-icon">▶</span>
+        </button>
+        <button id="music-next-btn" class="music-btn music-btn--sub" aria-label="Lagu Berikutnya" title="Selanjutnya">⏭</button>
+        <button id="music-mute-btn" class="music-btn music-btn--sub" aria-label="Mute Audio" title="Mute / Unmute">
+          <span class="music-icon">🔊</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Expandable Playlist Drawer -->
+    <div id="music-playlist-drawer" class="music-playlist-drawer" role="dialog" aria-label="Daftar Lagu Romantis">
+      <div class="playlist-header">
+        <h4 class="playlist-title">🎵 Playlist Romantis TikTok untuk Ana</h4>
+        <button id="playlist-close-btn" class="playlist-close" aria-label="Tutup Playlist">&times;</button>
+      </div>
+      <p id="music-status" role="status" aria-live="polite"></p>
+      <audio id="audio-player" src="assets/music.mp3" loop preload="auto"></audio>
+      <ul id="playlist-list" class="playlist-list">
+        <!-- Rendered dynamically by music.js -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Heart Button -->
+  <button id="heart-btn" class="heart-btn" aria-label="Kirim cinta dan peluk virtual" style="display:none;" title="Kirim Peluk Virtual 💖">
+    <span class="heart-btn__icon">♥</span>
+    <span class="heart-btn__count" id="heart-count">0</span>
+  </button>
+  <canvas id="heart-particles" class="heart-particles" aria-hidden="true"></canvas>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Galeri foto dan video fullscreen" aria-hidden="true">
+    <div class="lightbox__overlay"></div>
+    <button class="lightbox__close" id="lightbox-close" aria-label="Tutup galeri">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Kenangan sebelumnya">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Kenangan selanjutnya">›</button>
+    <div class="lightbox__img-wrap">
+      <img id="lightbox-img" class="lightbox__img" src="" alt="Foto Ana fullscreen">
+      <video id="lightbox-video" class="lightbox__img" controls muted playsinline preload="metadata" hidden aria-label="Video kenangan bersama Ana"></video>
+    </div>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+
+  
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- App Scripts -->
+  <script src="js/effects.js"></script>
+  <script src="js/cake3d.js"></script>
+  <script src="js/flower3d.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

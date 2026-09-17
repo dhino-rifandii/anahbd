@@ -1,0 +1,344 @@
+/* =============================================
+   RESPONSIVE.CSS — Mobile-First Media Queries
+   Blooming Birthday for Ana
+   ============================================= */
+
+/* ---------- Base: Mobile (320px+) ---------- */
+
+/* Safe area padding for iPhone */
+body {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.heart-btn {
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0));
+}
+
+/* Gallery: single column on very small screens */
+.gallery {
+  padding: 0 0.5rem;
+}
+
+.polaroid {
+  width: clamp(180px, 70vw, 260px);
+}
+
+/* Story: stack layout */
+.story-layout {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.story-photo {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Wishes: single column */
+.wishes-grid {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* Lightbox nav hidden on very small mobile */
+.lightbox__nav {
+  display: none;
+}
+
+/* Music player compact on mobile */
+.music-player {
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 14px;
+}
+
+.music-player__label {
+  font-size: 0.65rem;
+}
+
+.music-btn {
+  width: 28px;
+  height: 28px;
+  font-size: 0.65rem;
+}
+
+/* Modal adjustments for small screens */
+.modal__container {
+  margin: 1rem;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  max-height: calc(100dvh - 2rem);
+}
+
+/* ---------- Small Mobile: 360px+ ---------- */
+@media (min-width: 360px) {
+  .polaroid {
+    width: clamp(200px, 55vw, 240px);
+  }
+
+  .wishes-grid {
+    padding: 0 1rem;
+  }
+}
+
+/* ---------- Medium Mobile: 375px+ ---------- */
+@media (min-width: 375px) {
+  .gallery {
+    gap: 1.5rem;
+  }
+
+  .music-player {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
+/* ---------- Large Mobile: 390px+ ---------- */
+@media (min-width: 390px) {
+  .wishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .polaroid {
+    width: clamp(200px, 42vw, 240px);
+  }
+}
+
+/* ---------- XL Mobile: 430px+ ---------- */
+@media (min-width: 430px) {
+  .gallery {
+    gap: 2rem;
+  }
+}
+
+/* ---------- Tablet: 768px+ ---------- */
+@media (min-width: 768px) {
+  .story-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .story-photo {
+    max-width: none;
+  }
+
+  .wishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  .gallery {
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .polaroid {
+    width: 240px;
+  }
+
+  .lightbox__nav {
+    display: flex;
+  }
+
+  .music-player {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 18px;
+  }
+
+  .music-player__label {
+    font-size: 0.75rem;
+  }
+
+  .music-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  /* Opening blobs larger */
+  .opening__blob--1 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .opening__blob--2 {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* ---------- Desktop: 1024px+ ---------- */
+@media (min-width: 1024px) {
+  .wishes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .polaroid {
+    width: 260px;
+  }
+
+  .gallery {
+    gap: 2.5rem;
+  }
+
+  .flower-container {
+    max-width: 700px;
+    height: 65vh;
+    max-height: 600px;
+  }
+
+  .section-inner {
+    max-width: 1000px;
+  }
+
+  .letter-card {
+    max-width: 750px;
+  }
+
+  .story-layout {
+    max-width: 1000px;
+    gap: 4rem;
+  }
+
+  /* Hero enhancements */
+  .hero__content {
+    max-width: 800px;
+  }
+
+  .blob--1 {
+    width: 500px;
+    height: 500px;
+  }
+
+  .blob--2 {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* ---------- Large Desktop: 1440px+ ---------- */
+@media (min-width: 1440px) {
+  .section-inner {
+    max-width: 1100px;
+  }
+
+  .flower-container {
+    max-width: 800px;
+    max-height: 650px;
+  }
+
+  .story-layout {
+    max-width: 1100px;
+  }
+}
+
+/* ---------- Hover-capable devices only ---------- */
+@media (hover: hover) and (pointer: fine) {
+  /* Cursor effects only on non-touch devices */
+  body.cursor-active {
+    cursor: none;
+  }
+
+  body.cursor-active a,
+  body.cursor-active button {
+    cursor: none;
+  }
+}
+
+/* ---------- Portrait phones lock ---------- */
+@media (max-width: 480px) and (orientation: portrait) {
+  .flower-container {
+    height: 50vh;
+    max-height: 380px;
+  }
+}
+
+/* ---------- Landscape phones ---------- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 3rem 2rem;
+  }
+
+  .final-section {
+    min-height: auto;
+    padding: 3rem 2rem;
+  }
+
+  .flower-container {
+    height: 70vh;
+    max-height: 350px;
+  }
+
+  .opening__name {
+    font-size: 3rem;
+  }
+}
+
+/* ---------- Mobile Responsive Enhancements for New TikTok Components ---------- */
+@media (max-width: 600px) {
+  .cake-container {
+    max-width: 320px;
+    height: 350px;
+  }
+
+  .cake-controls {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 1.5rem;
+  }
+
+  .cake-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .romantic-envelope {
+    padding: 1.8rem 1.2rem;
+    margin: 1rem auto;
+  }
+
+  .wax-seal-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  .wax-seal-stamp {
+    font-size: 1.1rem;
+  }
+
+  .balloons-grid {
+    gap: 1rem;
+  }
+
+  .wish-balloon .balloon-body {
+    width: 58px;
+    height: 72px;
+    font-size: 1.15rem;
+  }
+
+  .gift-box-wrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .gift-reveal-card {
+    padding: 1.4rem 1rem;
+  }
+
+  .music-lyrics-ticker {
+    max-width: 140px;
+    font-size: 0.7rem;
+  }
+
+  .sparkler-tool-btn {
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+

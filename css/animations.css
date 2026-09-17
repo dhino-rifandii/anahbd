@@ -1,0 +1,201 @@
+/* =============================================
+   ANIMATIONS.CSS — Keyframes & Transition Utilities
+   Blooming Birthday for Ana
+   ============================================= */
+
+/* ---------- Fade In / Up ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ---------- Breathing / Pulse ---------- */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 6px 24px rgba(251, 111, 146, 0.35),
+      0 2px 8px rgba(251, 111, 146, 0.2);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow:
+      0 8px 32px rgba(251, 111, 146, 0.45),
+      0 4px 12px rgba(251, 111, 146, 0.25);
+  }
+}
+
+/* ---------- Heartbeat ---------- */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  60% { transform: scale(1); }
+}
+
+/* ---------- Arrow Bounce ---------- */
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ---------- Blob Float ---------- */
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -20px) scale(1.05); }
+  66% { transform: translate(-10px, 10px) scale(0.95); }
+}
+
+/* ---------- Gentle Float ---------- */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- Gentle Rotate ---------- */
+@keyframes gentleRotate {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* ---------- Glow Pulse ---------- */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 143, 171, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 143, 171, 0.35);
+  }
+}
+
+/* ---------- Flame Flicker ---------- */
+@keyframes flameFlicker {
+  0% {
+    transform: scaleX(1) scaleY(1) rotate(-1deg);
+  }
+  25% {
+    transform: scaleX(0.95) scaleY(1.04) rotate(1deg);
+  }
+  50% {
+    transform: scaleX(1.02) scaleY(0.97) rotate(-0.5deg);
+  }
+  75% {
+    transform: scaleX(0.97) scaleY(1.02) rotate(0.5deg);
+  }
+  100% {
+    transform: scaleX(1) scaleY(0.98) rotate(1deg);
+  }
+}
+
+/* ---------- CSS Flower Fallback Animations ---------- */
+@keyframes stemGrow {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 120px;
+    opacity: 1;
+  }
+}
+
+@keyframes petalBloom {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) rotate(var(--petal-rotate, 0deg)) translateY(0) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) rotate(var(--petal-rotate, 0deg)) translateY(-20px) scale(1);
+  }
+}
+
+@keyframes centerPop {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes leafGrow {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Spin (for loading etc) ---------- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Shimmer ---------- */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ---------- Text Reveal (letter by letter placeholder) ---------- */
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* =============================================
+   Reduced Motion
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
