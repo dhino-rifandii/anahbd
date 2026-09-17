@@ -236,6 +236,7 @@ const Music = (() => {
   /* ---- Lyrics Subtitle Ticker ---- */
   function startLyricsTicker() {
     stopLyricsTicker();
+    if (!document.getElementById('music-lyrics-ticker')) return;
     const track = PLAYLIST[currentTrackIdx];
     const lyrics = track.lyrics || [];
     if (!lyrics.length) return;
@@ -405,10 +406,11 @@ const Music = (() => {
 
   /* ---- Initialize Player Widget ---- */
   function init() {
+    setupAudioPlayer();
     const playerEl = document.getElementById('music-player');
+    if (!playerEl) return;
     if (playerEl) playerEl.style.display = 'flex';
 
-    setupAudioPlayer();
     renderPlaylistDrawer();
     updateTrackInfo();
     updateUI();

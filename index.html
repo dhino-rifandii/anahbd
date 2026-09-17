@@ -413,63 +413,8 @@
     <button class="theme-btn" data-theme="sakura" title="Sakura Blossom 🍓" aria-label="Tema Sakura Blossom">🍓</button>
   </div>
 
-  <!-- Modern Romantic Music Player Widget with Lyrics Ticker -->
-  <div id="music-player" class="music-player">
-    <div class="music-player__main">
-      <!-- Spinning Vinyl Record -->
-      <div class="music-vinyl-wrap" id="music-drawer-toggle" role="button" aria-label="Buka playlist lagu" title="Klik untuk membuka playlist lagu">
-        <div class="music-vinyl" id="music-vinyl">
-          <div class="music-vinyl__label">♫</div>
-        </div>
-      </div>
-
-      <!-- Track Meta & Animated Visualizer -->
-      <div class="music-info">
-        <div class="music-title-wrap">
-          <span class="music-title" id="music-title">Until I Found You</span>
-        </div>
-        <div class="music-subinfo">
-          <span class="music-artist" id="music-artist">Stephen Sanchez</span>
-          <!-- Equalizer bars -->
-          <div class="music-eq" id="music-eq" aria-hidden="true">
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-          </div>
-        </div>
-        <!-- Romantic Lyrics Subtitle Ticker -->
-        <div class="music-lyrics-ticker" id="music-lyrics-ticker">
-          ❝ I would never fall in love until I found her... ❞
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <div class="music-controls">
-        <button id="music-prev-btn" class="music-btn music-btn--sub" aria-label="Lagu Sebelumnya" title="Sebelumnya">⏮</button>
-        <button id="music-play-btn" class="music-btn music-btn--primary" aria-label="Putar / Pause" title="Play / Pause">
-          <span class="music-icon">▶</span>
-        </button>
-        <button id="music-next-btn" class="music-btn music-btn--sub" aria-label="Lagu Berikutnya" title="Selanjutnya">⏭</button>
-        <button id="music-mute-btn" class="music-btn music-btn--sub" aria-label="Mute Audio" title="Mute / Unmute">
-          <span class="music-icon">🔊</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Expandable Playlist Drawer -->
-    <div id="music-playlist-drawer" class="music-playlist-drawer" role="dialog" aria-label="Daftar Lagu Romantis">
-      <div class="playlist-header">
-        <h4 class="playlist-title">🎵 Playlist Romantis TikTok untuk Ana</h4>
-        <button id="playlist-close-btn" class="playlist-close" aria-label="Tutup Playlist">&times;</button>
-      </div>
-      <p id="music-status" role="status" aria-live="polite"></p>
-      <audio id="audio-player" src="assets/music.mp3" loop preload="auto"></audio>
-      <ul id="playlist-list" class="playlist-list">
-        <!-- Rendered dynamically by music.js -->
-      </ul>
-    </div>
-  </div>
+  <!-- Background music starts with the opening button and repeats continuously. -->
+  <audio id="audio-player" src="assets/music.mp3" loop preload="auto" hidden></audio>
 
   <!-- Heart Button -->
   <button id="heart-btn" class="heart-btn" aria-label="Kirim cinta dan peluk virtual" style="display:none;" title="Kirim Peluk Virtual 💖">
